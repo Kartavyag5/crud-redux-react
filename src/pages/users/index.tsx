@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from "react";
+import { useState } from "react";
 interface Node {
   root: string;
   child?: Node[];
@@ -35,7 +35,6 @@ const Tree = () => {
       </li>
     ));
   };
-  const rerender = useMemo(() => parentHandler(data), [data]);
 
   const rootReturn: any = (data: Node[]) => {
     return data.map((node: Node) => (
