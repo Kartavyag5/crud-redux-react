@@ -17,6 +17,8 @@ const KanbanBoard: React.FC = () => {
     { id: "task6", title: "Task 6", status: "done" },
   ]);
 
+  const StatusArr = ["todo", "inProgress", "done"];
+
   const onDrop = (
     event: React.DragEvent<HTMLDivElement>,
     newStatus: string
@@ -54,36 +56,18 @@ const KanbanBoard: React.FC = () => {
 
   return (
     <div className="kanban-board">
-      <div className="kanban-column">
-        <div className="kanban-column-header">To Do</div>
-        <div
-          className="kanban-column-content"
-          onDrop={(event) => onDrop(event, "todo")}
-          onDragOver={(event) => event.preventDefault()}
-        >
-          {renderTasks("todo")}
+      {StatusArr.map((status) => (
+        <div className="kanban-column">
+          <div className="kanban-column-header">{status}</div>
+          <div
+            className="kanban-column-content"
+            onDrop={(event) => onDrop(event, status)}
+            onDragOver={(event) => event.preventDefault()}
+          >
+            {renderTasks(status)}
+          </div>
         </div>
-      </div>
-      <div className="kanban-column">
-        <div className="kanban-column-header">In Progress</div>
-        <div
-          className="kanban-column-content"
-          onDrop={(event) => onDrop(event, "inProgress")}
-          onDragOver={(event) => event.preventDefault()}
-        >
-          {renderTasks("inProgress")}
-        </div>
-      </div>
-      <div className="kanban-column">
-        <div className="kanban-column-header">Done</div>
-        <div
-          className="kanban-column-content"
-          onDrop={(event) => onDrop(event, "done")}
-          onDragOver={(event) => event.preventDefault()}
-        >
-          {renderTasks("done")}
-        </div>
-      </div>
+      ))}
     </div>
   );
 };
