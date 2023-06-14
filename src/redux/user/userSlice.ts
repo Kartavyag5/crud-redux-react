@@ -40,15 +40,22 @@ export const userSlice = createSlice({
       let user = state.users.find(
         (user: usersObj) => action.payload.id === user.id
       );
-      if (action.payload.first_name) {
-        user.first_name = action.payload.first_name;
-      }
-      if (action.payload.last_name) {
-        user.last_name = action.payload.last_name;
-      }
-      if (action.payload.email) {
-        user.email = action.payload.email;
-      }
+      Object.keys(user).map((i) => {
+        if (action.payload[`${i}`]) {
+          user[`${i}`] = action.payload[`${i}`];
+          return i;
+        }
+        return i;
+      });
+      // if (action.payload.first_name) {
+      //   user.first_name = action.payload.first_name;
+      // }
+      // if (action.payload.last_name) {
+      //   user.last_name = action.payload.last_name;
+      // }
+      // if (action.payload.email) {
+      //   user.email = action.payload.email;
+      // }
       state.users = state.users.map((us: usersObj) => {
         if (user.id === us.id) {
           return user;

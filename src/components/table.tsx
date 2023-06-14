@@ -14,7 +14,6 @@ import { ThunkDispatch } from "@reduxjs/toolkit";
 const Table = () => {
   const users = useSelector((state: RootState) => state.user.users);
   const dispatch = useDispatch<ThunkDispatch<any, any, any>>();
-  const [actions, setActions] = useState("");
   const [add, setAdd] = useState(false);
   const [addUser, setAddUser] = useState({
     first_name: "",

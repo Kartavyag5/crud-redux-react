@@ -23,6 +23,34 @@ const Tree = () => {
       ],
     },
   ];
+
+  let arr: String[] = ["scale", "happy", "strength", "peace", "happy", "happy"];
+
+  function removeDuplicates(arr: String[]) {
+    return arr.filter((item: String, index) => arr.indexOf(item) === index);
+  }
+
+  const testDup = (arr: String[]) => {
+    let Uarr: String[] = [];
+    for (let i = 0; i < arr.length; i++) {
+      let isDup = false;
+      for (let j = 0; j < Uarr.length; j++) {
+        if (arr[i] === arr[j]) {
+          Uarr.push(arr[i]);
+          isDup = true;
+          break;
+        }
+      }
+      if (isDup) {
+        Uarr[Uarr.length] = arr[i];
+        return;
+      }
+    }
+    return Uarr;
+  };
+
+  console.log("test", testDup(arr));
+
   const [cBranch, setCbranch] = useState<string>("");
   const [data, setData] = useState(sdata);
   const [child, setChild] = useState<string>("");
